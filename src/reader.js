@@ -13,15 +13,17 @@ module.exports = (filePath) => {
   const lines = file.split(/\r?\n/)
 
   lines.forEach(line => {
-    const section = line.split(' ')
-    if (section.length > 3) {
-      throw new Error('config malformed')
+    if (line) {
+      const section = line.split(' ')
+      if (section.length > 3) {
+        throw new Error('config malformed')
+      }
+      config.push({
+        mins: section[0],
+        hours: section[1],
+        app: section[2]
+      })
     }
-    config.push({
-      mins: section[0],
-      hours: section[1],
-      app: section[2]
-    })
   })
 
   return config

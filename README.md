@@ -12,5 +12,18 @@ node index.js HH:MM  <relative config path>
 ```
 different mock files can be found in the `test` folder
 
-### dev note
+## Tests
+using mocha and chai
+```
+npm run test
+```
+
+## Linter
+eslint using standard
+```
+npm run lint
+```
+
+
+### Dev note
 eslint used with standard setup, not my usual style but creating config would of taken too long for this app.

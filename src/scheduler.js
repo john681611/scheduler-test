@@ -2,12 +2,12 @@ module.exports = (time, config) => {
   const any = '*'
   const formattedTime = time.split(':')
   let response = []
+  let compDate = new Date()
+  compDate.setHours(formattedTime[0], formattedTime[1], 0)
 
   config.forEach(app => {
     let date = new Date()
-    let compDate = new Date()
     date.setHours(formattedTime[0], formattedTime[1], 0)
-    compDate.setHours(formattedTime[0], formattedTime[1], 0)
 
     if (app.mins !== any) {
       date.setMinutes(app.mins)
@@ -15,7 +15,10 @@ module.exports = (time, config) => {
 
     if (app.hours !== any) {
       date.setHours(app.hours)
-      if (app.mins === any && date.getHours() !== parseInt(formattedTime[0], 10)) {
+
+      const isNotInHour = date.getHours() !== parseInt(formattedTime[0], 10)
+
+      if (app.mins === any && isNotInHour) {
         date.setMinutes(0)
       }
     }
